@@ -1,204 +1,171 @@
 'use strict';
-let houres = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-let Seattle = {
-    avg: 6.3,
-    customersperhour: 0,
-    name='Seattle',
-        getcustomers: function () {
-        this.customersperhour = randomNumber();
+let total1 =0;
+let total2 =0;
+let total3 =0;
+let total4 =0;
+let total5 =0;
+let houres=['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
+function getRandomNumber(min,max){
+    return Math.floor(Math.random() * (max - min + 1) + min);}
+const Seattle={
+    name : 'Seattle',
+    coustmerPerHour : 0 ,
+    getCoustmer: function(min,max){
         console.log(this);
-        },
-        simulated: function () {
-            return Math.floor(this.randomNumber() * this.avg);
-    
+        this.coustmerPerHour = getRandomNumber(min,max);
+        console.log(this);
 },
-    render: function () {
-        //create parent
-        let parent = document.getElementById('store place');
-        console.log(parent);
-        //create article
-        let articleElement = document.createElement('article');
+render:function () {
+    const container = document.getElementById('parent');
+    const articleEl = document.createElement('article');
+    container.appendChild(articleEl);
+    const h2El = document.createElement('h2');
+    articleEl.appendChild(h2El);
+    h2El.textContent = this.name;
 
-        //adding artical to div
-        parent.appendChild(articleElement);
-        // creating element
-        let h2Element = document.createElement('h2');
-        articleElement.appendChild(h2Element);
-        h2Element.textContent = Seattle.name;
-
-        ////////
-        let ul2Element = document.createElement('ul');
-        articleElement.appendChild(ul2Element);
-        for (let i = 0; i < hours.length; i++) {
-            Seattle.getcustomers(23, 65);
-            let li1 = document.createElement('li');
-
-            ul2Element.append(li1);
-            li1.textContent = `${houres[i]}:${this.customersperhour}`;
-        }
+    const ulEl = document.createElement('ul');
+    articleEl.appendChild(ulEl);
+    for(let i=0; i< houres.length; i++)
+    {
+        Seattle.getCoustmer(23,65);
+      const liEl = document.createElement('li');
+      ulEl.appendChild(liEl);
+      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
+     total1=total1+this.coustmerPerHour;
     }
-}
+    const liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent =`Total : ${total1} cookies`;
+}};
+Seattle.render();
 
 
-
-let Tokyo = {
-    avg=1.2,
-    customersperhour: 0,
-    name='Tokyo',
-    getcustomers: function (min, max) {
-        this.customersperhour = randomNumber(min, max);
+const Tokyo={
+    name : 'Tokyo',
+    coustmerPerHour : 0 ,
+    getCoustmer: function(min,max){
         console.log(this);
-    },
-    simulated: function () {
-        return Math.floor(this.randomNumber() * this.avg);
-
+        this.coustmerPerHour = getRandomNumber(min,max);
+        console.log(this);
 },
-render: function () {
-    //create parent
-    let parent = document.getElementById('store place');
-    console.log(parent);
-    //create article
-    let articleElement = document.createElement('article');
+render:function () {
+    const container = document.getElementById('parent');
+    const articleEl = document.createElement('article');
+    container.appendChild(articleEl);
+    const h2El = document.createElement('h2');
+    articleEl.appendChild(h2El);
+    h2El.textContent = this.name;
 
-    //adding artical to div
-    parent.appendChild(articleElement);
-    // creating element
-    let h2Element = document.createElement('h2');
-    articleElement.appendChild(h2Element);
-    h2Element.textContent = Tokyo.name;
-
-    ////////
-    let ul2Element = document.createElement('ul');
-    articleElement.appendChild(ul2Element);
-    for (let i = 0; i < hours.length; i++) {
-        Seattle.getcustomers(3,24);
-        let li1 = document.createElement('li');
-
-        ul2Element.append(li1);
-        li1.textContent = `${houres[i]}:${this.customersperhour}`;
+    const ulEl = document.createElement('ul');
+    articleEl.appendChild(ulEl);
+    for(let i=0; i< houres.length; i++)
+    {
+        Tokyo.getCoustmer(3,24);
+      const liEl = document.createElement('li');
+      ulEl.appendChild(liEl);
+      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
+      total2=total2+this.coustmerPerHour;
     }
+    const liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent =`Total : ${total2} cookies`;
+}};
+Tokyo.render();
 
-}  
-}
-
-
-let Dubai = {
-    customersperhour: 0,
-avg=3.7,
-    name='Dubai',
-    getcustomers: function (min, max) {
-        this.customersperhour = randomNumber(min, max);
+const Dubai={
+    name : 'Dubai',
+    coustmerPerHour : 0 ,
+    getCoustmer: function(min,max){
         console.log(this);
-
-
-    },
-    simulated: function () {
-        return Math.floor(this.randomNumber() * this.avg);},
-
-    render: function () {
-        //create parent
-        let parent = document.getElementById('store place');
-        console.log(parent);
-        //create article
-        let articleElement = document.createElement('article');
-    
-        //adding artical to div
-        parent.appendChild(articleElement);
-        // creating element
-        let h2Element = document.createElement('h2');
-        articleElement.appendChild(h2Element);
-        h2Element.textContent = Dubai.name;
-    
-        ////////
-        let ul2Element = document.createElement('ul');
-        articleElement.appendChild(ul2Element);
-        for (let i = 0; i < hours.length; i++) {
-            Seattle.getcustomers(11,48);
-            let li1 = document.createElement('li');
-    
-            ul2Element.append(li1);
-            li1.textContent = `${houres[i]}:${this.customersperhour}`;
-        }
-    }
-}
-let Paris = {
-    name='Paris',
-    avg=2.3,
-    getcustomers: function (min, max) {
-        this.customersperhour = randomNumber(min, max);
+        this.coustmerPerHour = getRandomNumber(min,max);
         console.log(this);
-    },
-    
-    simulated: function () {
-        return Math.floor(this.randomNumber() * this.avg);},
+},
+render:function () {
+    const container = document.getElementById('parent');
+    const articleEl = document.createElement('article');
+    container.appendChild(articleEl);
+    const h2El = document.createElement('h2');
+    articleEl.appendChild(h2El);
+    h2El.textContent = this.name;
 
-        render: function () {
-            //create parent
-            let parent = document.getElementById('store place');
-            console.log(parent);
-            //create article
-            let articleElement = document.createElement('article');
-        
-            //adding artical to div
-            parent.appendChild(articleElement);
-            // creating element
-            let h2Element = document.createElement('h2');
-            articleElement.appendChild(h2Element);
-            h2Element.textContent = Paris.name;
-        
-            ////////
-            let ul2Element = document.createElement('ul');
-            articleElement.appendChild(ul2Element);
-            for (let i = 0; i < hours.length; i++) {
-                Seattle.getcustomers(20,38);
-                let li1 = document.createElement('li');
-        
-                ul2Element.append(li1);
-                li1.textContent = `${houres[i]}:${this.customersperhour}`;
-            }
-        }
+    const ulEl = document.createElement('ul');
+    articleEl.appendChild(ulEl);
+    for(let i=0; i< houres.length; i++)
+    {
+        Dubai.getCoustmer(11,38);
+      const liEl = document.createElement('li');
+      ulEl.appendChild(liEl);
+      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
+      total3=total3+this.coustmerPerHour;
     }
+    const liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent =`Total : ${total3} cookies`;
+}};
+Dubai.render();
 
-
-let Lima = {
-    name='Lima',
-    avg=4.6,
-    getcustomers: function (min, max) {
-        this.customersperhour = randomNumber(min, max);
+const Paris={
+    name : 'Paris',
+    coustmerPerHour : 0 ,
+    getCoustmer: function(min,max){
         console.log(this);
+        this.coustmerPerHour = getRandomNumber(min,max);
+        console.log(this);
+},
+render:function () {
+    const container = document.getElementById('parent');
+    const articleEl = document.createElement('article');
+    container.appendChild(articleEl);
+    const h2El = document.createElement('h2');
+    articleEl.appendChild(h2El);
+    h2El.textContent = this.name;
 
-
-    },
-    simulated: function () {
-        return Math.floor(this.randomNumber() * this.avg);},
-
-    render: function () {
-        //create parent
-        let parent = document.getElementById('store place');
-        console.log(parent);
-        //create article
-        let articleElement = document.createElement('article');
-    
-        //adding artical to div
-        parent.appendChild(articleElement);
-        // creating element
-        let h2Element = document.createElement('h2');
-        articleElement.appendChild(h2Element);
-        h2Element.textContent = Lima.name;
-    
-        ////////
-        let ul2Element = document.createElement('ul');
-        articleElement.appendChild(ul2Element);
-        for (let i = 0; i < hours.length; i++) {
-            Seattle.getcustomers(2,16);
-            let li1 = document.createElement('li');
-    
-            ul2Element.append(li1);
-            li1.textContent = `${houres[i]}:${this.customersperhour}`;
-        }
+    const ulEl = document.createElement('ul');
+    articleEl.appendChild(ulEl);
+    for(let i=0; i< houres.length; i++)
+    {
+        Paris.getCoustmer(20,38);
+      const liEl = document.createElement('li');
+      ulEl.appendChild(liEl);
+      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
+      total4=total4+this.coustmerPerHour;
     }
-}
+    const liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent =`Total : ${total4} cookies`;
+}};
+Paris.render();
+
+const Lima={
+    name : 'Lima',
+    coustmerPerHour : 0 ,
+    getCoustmer: function(min,max){
+        console.log(this);
+        this.coustmerPerHour = getRandomNumber(min,max);
+        console.log(this);
+},
+render:function () {
+    const container = document.getElementById('parent');
+    const articleEl = document.createElement('article');
+    container.appendChild(articleEl);
+    const h2El = document.createElement('h2');
+    articleEl.appendChild(h2El);
+    h2El.textContent = this.name;
+
+    const ulEl = document.createElement('ul');
+    articleEl.appendChild(ulEl);
+    for(let i=0; i< houres.length; i++)
+    {
+        Lima.getCoustmer(2,16);
+      const liEl = document.createElement('li');
+      ulEl.appendChild(liEl);
+      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
+      total5=total5+this.coustmerPerHour;
+    }
+    const liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent =`Total : ${total5} cookies`;
+}};
+Lima.render();
+
+
