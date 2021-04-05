@@ -13,8 +13,8 @@ function cookies (name,min,max,avg)
     this.avg=avg;
 this.name=name;
 this.cookiesperhour=[];
-this.custmurperhour=[];
 this.total=0;
+this.randomnumber();
 }
 
 const Seattle=new cookies('Seattle',23,65,6.3);
@@ -32,19 +32,48 @@ console.log(Seattle);
 const Lima=new cookies('Lima',2,16,4.6);
 console.log(Seattle);
 
-//creating function (methode with const)
+//creating function by using cons (methode with const)
 //calculate the random custumer per hour 
 cookies.prototype.calcookiesperhour=function(){
 for(let i=0;i<hours.length;i++){
     //here calculate the number cookies and multiply with avg in same function 
-    this.cookiesperhour.push(math.floor(randomnumber(this.min,this.max))*this.avg);
-    this.total += this.numberOfCookies[i];
+    this.cookiesperhour.push(Math.floor(randomnumber(this.min,this.max))*this.avg);
+    this.total += this.cookiesperhour[i];
 
     
 }
 
 }
 
+//create render function dom
+
+let parent= document.getElementById('parent');
+//create table in globel
+let table=document.createElement('table');
+//appeand
+parent.appendChild(table);
+//craet tr element in table
+let headingrow=document.createElement('tr');
+//append tr to table
+table.appendChild(headingrow);
+
+for (let i =0;i<hours.length;i++){
+    // create the first row
+    let thelement=document.createElement('th');
+    //appeanding
+    headingrow.appendChild(thelement);
+    //give the element the contant
+    thelement.textContent=hours[i];
+
+
+
+}
+
+//Tokyo.calcookiesperhour();
+//Seattle.calcookiesperhour();
+//Dubai.calcookiesperhour();
+//Paris.calcookiesperhour();
+//Lima.calcookiesperhour();
 
 
 
