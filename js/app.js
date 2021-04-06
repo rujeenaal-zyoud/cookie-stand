@@ -100,6 +100,7 @@ function makingHeader() {
 
 
 
+
 //creating function by using cons (methode with const)
 
 Cookie.prototype.render = function () {
