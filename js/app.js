@@ -1,171 +1,207 @@
 'use strict';
-let total1 =0;
-let total2 =0;
-let total3 =0;
-let total4 =0;
-let total5 =0;
-let houres=['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-function getRandomNumber(min,max){
-    return Math.floor(Math.random() * (max - min + 1) + min);}
-const Seattle={
-    name : 'Seattle',
-    coustmerPerHour : 0 ,
-    getCoustmer: function(min,max){
-        console.log(this);
-        this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
-},
-render:function () {
-    const container = document.getElementById('parent');
-    const articleEl = document.createElement('article');
-    container.appendChild(articleEl);
-    const h2El = document.createElement('h2');
-    articleEl.appendChild(h2El);
-    h2El.textContent = this.name;
+let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-    const ulEl = document.createElement('ul');
-    articleEl.appendChild(ulEl);
-    for(let i=0; i< houres.length; i++)
-    {
-        Seattle.getCoustmer(23,65);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
-      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
-     total1=total1+this.coustmerPerHour;
+//create the function for random custemer number
+function randomnumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+let stores = [];
+//create the constructor for all object store cookies
+
+function Cookie(name, min, max, avg) {
+    this.min = min;
+    this.max = max;
+    this.avg = avg;
+    this.name = name;
+
+    this.total = 0;
+    // randomnumber();
+    this.cookiesperhour = [];
+
+    stores.push(this);
+
+}
+// another way of solving total of toals
+// let globalTotal=0;
+
+//calculate the random custumer per hour
+Cookie.prototype.calcCustomerPerHour=function () {
+    return randomnumber(this.min, this.max);
+}
+
+//  and the average per customer for each hour
+Cookie.prototype.calcookiesperhour = function () {
+    for (let i = 0; i < hours.length; i++) {
+        //here calculate the number cookies and multiply with avg in same function 
+        this.cookiesperhour.push(Math.floor( this.calcCustomerPerHour() * this.avg));
+        this.total += this.cookiesperhour[i];
+        // globalTotal+=this.cookiesperhour[i];
     }
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent =`Total : ${total1} cookies`;
-}};
-Seattle.render();
+}
+
+const Seattle = new Cookie('Seattle', 23, 65, 6.3);
+// console.log(Seattle);
+
+const Tokyo = new Cookie('Tokyo', 3, 24, 1.2);
+// console.log(Tokyo);
+
+const Dubai = new Cookie('Dubai', 11, 38, 3.7);
+// console.log(Dubai);
+
+const Paris = new Cookie('Paris', 20, 38, 2.3);
+// console.log(Paris);
+
+const Lima = new Cookie('Lima', 2, 16, 4.6);
+// console.log(Lima);
+
+console.log('stores',stores);
 
 
-const Tokyo={
-    name : 'Tokyo',
-    coustmerPerHour : 0 ,
-    getCoustmer: function(min,max){
-        console.log(this);
-        this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
-},
-render:function () {
-    const container = document.getElementById('parent');
-    const articleEl = document.createElement('article');
-    container.appendChild(articleEl);
-    const h2El = document.createElement('h2');
-    articleEl.appendChild(h2El);
-    h2El.textContent = this.name;
 
-    const ulEl = document.createElement('ul');
-    articleEl.appendChild(ulEl);
-    for(let i=0; i< houres.length; i++)
-    {
-        Tokyo.getCoustmer(3,24);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
-      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
-      total2=total2+this.coustmerPerHour;
+
+let parent = document.getElementById('parent');
+//create table in globel
+let table = document.createElement('table');
+//appeand
+parent.appendChild(table);
+
+
+// making header function
+
+function makingHeader() {
+    //create tr element in table
+    let headingrow = document.createElement('tr');
+    //append tr to table
+    table.appendChild(headingrow);
+    
+    
+    let firstTh = document.createElement('th');
+    headingrow.appendChild(firstTh);
+    firstTh.textContent='Name';
+    
+    for (let i = 0; i < hours.length; i++) {
+        // create the first row
+        let hoursTh = document.createElement('th');
+        //appeanding
+        headingrow.appendChild(hoursTh);
+        //give the element the contant
+        hoursTh.textContent = hours[i];
+    
     }
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent =`Total : ${total2} cookies`;
-}};
-Tokyo.render();
+    
+    let finalTh = document.createElement('th');
+    headingrow.appendChild(finalTh);
+    finalTh.textContent = "Daily Location Total";
 
-const Dubai={
-    name : 'Dubai',
-    coustmerPerHour : 0 ,
-    getCoustmer: function(min,max){
-        console.log(this);
-        this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
-},
-render:function () {
-    const container = document.getElementById('parent');
-    const articleEl = document.createElement('article');
-    container.appendChild(articleEl);
-    const h2El = document.createElement('h2');
-    articleEl.appendChild(h2El);
-    h2El.textContent = this.name;
+    
+}    
 
-    const ulEl = document.createElement('ul');
-    articleEl.appendChild(ulEl);
-    for(let i=0; i< houres.length; i++)
-    {
-        Dubai.getCoustmer(11,38);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
-      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
-      total3=total3+this.coustmerPerHour;
+
+
+
+//creating function by using cons (methode with const)
+
+Cookie.prototype.render = function () {
+    // make a store row 
+    let storeRow = document.createElement('tr');
+    // append to the table
+    table.appendChild(storeRow);
+
+    // first td element
+    let nameTd = document.createElement('td');
+    // append to the store row
+    storeRow.appendChild(nameTd);
+    // give text content
+    nameTd.textContent=this.name;
+
+
+    for (let i = 0; i < hours.length; i++) {
+        // make a td element for every hour
+        let cookiesTd = document.createElement('td');
+        // append to store row
+        storeRow.appendChild(cookiesTd);
+        // give text content of the avarage cookies per hour
+        cookiesTd.textContent = this.cookiesperhour[i];
     }
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent =`Total : ${total3} cookies`;
-}};
-Dubai.render();
 
-const Paris={
-    name : 'Paris',
-    coustmerPerHour : 0 ,
-    getCoustmer: function(min,max){
-        console.log(this);
-        this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
-},
-render:function () {
-    const container = document.getElementById('parent');
-    const articleEl = document.createElement('article');
-    container.appendChild(articleEl);
-    const h2El = document.createElement('h2');
-    articleEl.appendChild(h2El);
-    h2El.textContent = this.name;
+    // made total td for every shop
+    let totalTd = document.createElement('td');
+    // append total to the store row
+    storeRow.appendChild(totalTd);
+    // give text content
+    totalTd.textContent = this.total;
 
-    const ulEl = document.createElement('ul');
-    articleEl.appendChild(ulEl);
-    for(let i=0; i< houres.length; i++)
-    {
-        Paris.getCoustmer(20,38);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
-      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
-      total4=total4+this.coustmerPerHour;
+}
+
+
+
+// footer function
+function makingFooter() {
+    // making footer row
+    let footerRow=document.createElement('tr');
+
+    // append footer row to the table
+    table.appendChild(footerRow);
+
+    // make first th for footer
+
+    let firstTh = document.createElement('th');
+
+    // append th to the footer row
+    footerRow.appendChild(firstTh);
+
+    // give text content
+    firstTh.textContent='Totals';
+
+    let totalForEachHour;
+    let megaTotal=0;
+    // making the totals
+    for (let i = 0; i < hours.length; i++) {
+        totalForEachHour=0;
+        for (let j = 0; j < stores.length; j++) {
+            // console.log(hours[i]);
+            // console.log(stores[j]);
+            totalForEachHour+=stores[j].cookiesperhour[i];
+            megaTotal+=stores[j].cookiesperhour[i];
+         
+        }
+        console.log(totalForEachHour);
+        // create final th
+        let footerTh=document.createElement('th');
+
+        // append to footer row
+        footerRow.appendChild(footerTh);
+
+        // give text conent
+        footerTh.textContent=totalForEachHour;
+
     }
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent =`Total : ${total4} cookies`;
-}};
-Paris.render();
 
-const Lima={
-    name : 'Lima',
-    coustmerPerHour : 0 ,
-    getCoustmer: function(min,max){
-        console.log(this);
-        this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
-},
-render:function () {
-    const container = document.getElementById('parent');
-    const articleEl = document.createElement('article');
-    container.appendChild(articleEl);
-    const h2El = document.createElement('h2');
-    articleEl.appendChild(h2El);
-    h2El.textContent = this.name;
+    // make final th total of totals
+    let totalTh= document.createElement('th');
 
-    const ulEl = document.createElement('ul');
-    articleEl.appendChild(ulEl);
-    for(let i=0; i< houres.length; i++)
-    {
-        Lima.getCoustmer(2,16);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
-      liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
-      total5=total5+this.coustmerPerHour;
-    }
-    const liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent =`Total : ${total5} cookies`;
-}};
-Lima.render();
+    // append to the footer row
+    footerRow.appendChild(totalTh);
+
+    // give text content:
+    totalTh.textContent=megaTotal;
+     
+    // if you want to solve it with global total
+    // totalTh.textContent=globalTotal;
+
+
+}
+
+
+makingHeader();
+for (let i = 0; i < stores.length; i++) {
+    stores[i].calcookiesperhour();
+    stores[i].render();
+}
+makingFooter();
+
+
+
 
 
