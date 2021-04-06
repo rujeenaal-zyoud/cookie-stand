@@ -1,5 +1,4 @@
 'use strict';
-
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 //create the function for random custemer number
@@ -205,20 +204,4 @@ makingFooter();
 
 
 
-// let hourlyTotal=[];
-// for (let i = 0; i < stores.length; i++) {
-//     hourlyTotal[i]=Seattle.cookiesperhour[i]+to.cookiesperhour[i]+
-    
-// }
-//create render function dom
 
-
-//Tokyo.calcookiesperhour();
-//Seattle.calcookiesperhour();
-//Dubai.calcookiesperhour();
-//Paris.calcookiesperhour();
-//Lima.calcookiesperhour();
-
-
-
-// renderfunction
