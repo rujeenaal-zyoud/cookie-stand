@@ -6,6 +6,13 @@ table, tr, th ,td{
     position: relative;
 }
 
+nav{
+    display: flex;
+}
+form{
+    margin-top: 30px;
+}
+
 .links{
     display: inline-block;
     padding-left: 20px;
@@ -13,6 +20,8 @@ table, tr, th ,td{
     text-decoration: none;
 }
 header{
+    padding: 30px;
+    margin-top: 0px;
     height: 100px;
     background-color: blanchedalmond;
 }
