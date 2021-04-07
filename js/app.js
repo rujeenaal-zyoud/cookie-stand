@@ -1,13 +1,13 @@
 'use strict';
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+let stores = [];
+
 //create the function for random custemer number
 function randomnumber(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let stores = [];
-//create the constructor for all object store cookies
 
 function Cookie(name, min, max, avg) {
     this.min = min;
@@ -210,11 +210,11 @@ function newstore(event) {
     // to show the data that enter in consol
     let newplace = event.target.StoreCountery.value;
     console.log(newplace);
-    let min = event.target.MinCustmerPerHour.value;
+    let min = parseInt(event.target.MinCustmerPerHour.value);
     console.log(min);
-    let max = event.target.MixCustmerPerHour.value;
+    let max = parseInt(event.target.MixCustmerPerHour.value);
     console.log(max);
-    let avg = event.target.AvgSallesPerHour.value;
+    let avg = parseFloat(event.target.AvgSallesPerHour.value);
     console.log(avg);
 
 
@@ -224,14 +224,12 @@ function newstore(event) {
     let container = document.getElementById('add');
 
     container.textContent = '';
-
-    for (let i = 0; i < stores.length; i++) {
-        stores[i].calcookiesperhour();
+     for (let i = 0; i < stores.length; i++) {
+     stores[i].calcookiesperhour();
         
-
     }
-    addedstore.render();
-   // makingFooter();
+     addedstore.render();
+     makingFooter();
 
 }
 
@@ -241,9 +239,11 @@ makingHeader();
 for (let i = 0; i < stores.length; i++) {
     stores[i].calcookiesperhour();
     stores[i].render();
+ 
 
 }
 makingFooter();
+
 
 
 
