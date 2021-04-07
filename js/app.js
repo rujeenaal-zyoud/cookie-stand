@@ -26,7 +26,7 @@ function Cookie(name, min, max, avg) {
 // let globalTotal=0;
 
 //calculate the random custumer per hour
-Cookie.prototype.calcCustomerPerHour=function () {
+Cookie.prototype.calcCustomerPerHour = function () {
     return randomnumber(this.min, this.max);
 }
 
@@ -34,7 +34,7 @@ Cookie.prototype.calcCustomerPerHour=function () {
 Cookie.prototype.calcookiesperhour = function () {
     for (let i = 0; i < hours.length; i++) {
         //here calculate the number cookies and multiply with avg in same function 
-        this.cookiesperhour.push(Math.floor( this.calcCustomerPerHour() * this.avg));
+        this.cookiesperhour.push(Math.floor(this.calcCustomerPerHour() * this.avg));
         this.total += this.cookiesperhour[i];
         // globalTotal+=this.cookiesperhour[i];
     }
@@ -55,7 +55,7 @@ const Paris = new Cookie('Paris', 20, 38, 2.3);
 const Lima = new Cookie('Lima', 2, 16, 4.6);
 // console.log(Lima);
 
-console.log('stores',stores);
+console.log('stores', stores);
 
 
 
@@ -74,12 +74,12 @@ function makingHeader() {
     let headingrow = document.createElement('tr');
     //append tr to table
     table.appendChild(headingrow);
-    
-    
+
+
     let firstTh = document.createElement('th');
     headingrow.appendChild(firstTh);
-    firstTh.textContent='Name';
-    
+    firstTh.textContent = 'Name';
+
     for (let i = 0; i < hours.length; i++) {
         // create the first row
         let hoursTh = document.createElement('th');
@@ -87,15 +87,16 @@ function makingHeader() {
         headingrow.appendChild(hoursTh);
         //give the element the contant
         hoursTh.textContent = hours[i];
-    
+
     }
-    
+
     let finalTh = document.createElement('th');
     headingrow.appendChild(finalTh);
     finalTh.textContent = "Daily Location Total";
 
-    
-}    
+
+}
+
 
 
 
@@ -114,7 +115,7 @@ Cookie.prototype.render = function () {
     // append to the store row
     storeRow.appendChild(nameTd);
     // give text content
-    nameTd.textContent=this.name;
+    nameTd.textContent = this.name;
 
 
     for (let i = 0; i < hours.length; i++) {
@@ -140,7 +141,7 @@ Cookie.prototype.render = function () {
 // footer function
 function makingFooter() {
     // making footer row
-    let footerRow=document.createElement('tr');
+    let footerRow = document.createElement('tr');
 
     // append footer row to the table
     table.appendChild(footerRow);
@@ -153,45 +154,78 @@ function makingFooter() {
     footerRow.appendChild(firstTh);
 
     // give text content
-    firstTh.textContent='Totals';
+    firstTh.textContent = 'Totals';
 
     let totalForEachHour;
-    let megaTotal=0;
+    let megaTotal = 0;
     // making the totals
     for (let i = 0; i < hours.length; i++) {
-        totalForEachHour=0;
+        totalForEachHour = 0;
         for (let j = 0; j < stores.length; j++) {
             // console.log(hours[i]);
             // console.log(stores[j]);
-            totalForEachHour+=stores[j].cookiesperhour[i];
-            megaTotal+=stores[j].cookiesperhour[i];
-         
+            totalForEachHour += stores[j].cookiesperhour[i];
+            megaTotal += stores[j].cookiesperhour[i];
+
         }
         console.log(totalForEachHour);
         // create final th
-        let footerTh=document.createElement('th');
+        let footerTh = document.createElement('th');
 
         // append to footer row
         footerRow.appendChild(footerTh);
 
         // give text conent
-        footerTh.textContent=totalForEachHour;
+        footerTh.textContent = totalForEachHour;
 
     }
 
     // make final th total of totals
-    let totalTh= document.createElement('th');
+    let totalTh = document.createElement('th');
 
     // append to the footer row
     footerRow.appendChild(totalTh);
 
     // give text content:
-    totalTh.textContent=megaTotal;
-     
+    totalTh.textContent = megaTotal;
+
     // if you want to solve it with global total
     // totalTh.textContent=globalTotal;
 
 
+
+
+}
+// here get the element by id that in HTML for form tage
+let form = document.getElementById('form');
+console.log(form);
+//add the event  listener into form
+form.addEventListener('submit', newstore);
+
+//Know create a function  submitter that call and run when event submit
+function newstore(event) {
+    // prevent the default behaviour of refreshing the page
+    event.preventDefault();
+    console.log(event);
+
+    // to show the data that enter in consol
+    let newplace=event.target.StoreCountery.value;
+  console.log(newplace);
+
+  let min=event.target.MinCustmerPerHour.value;
+  console.log(min);
+  let max=event.target.MixCustmerPerHour.value;
+  console.log(max);
+
+  let avg=event.target.AvgSallesPerHour.value;
+  console.log(avg);
+  let newstore= new Cookie (newplace,min,max,avg);
+  console.log(newstore);
+  for (let i = 0; i < stores.length; i++) {
+    stores[i].calcookiesperhour();
+    
+}
+  newstore.render();
 }
 
 
@@ -201,7 +235,6 @@ for (let i = 0; i < stores.length; i++) {
     stores[i].render();
 }
 makingFooter();
-
 
 
 
