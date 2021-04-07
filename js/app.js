@@ -207,34 +207,45 @@ function newstore(event) {
     // prevent the default behaviour of refreshing the page
     event.preventDefault();
     console.log(event);
-
     // to show the data that enter in consol
-    let newplace=event.target.StoreCountery.value;
-  console.log(newplace);
+    let newplace = event.target.StoreCountery.value;
+    console.log(newplace);
+    let min = event.target.MinCustmerPerHour.value;
+    console.log(min);
+    let max = event.target.MixCustmerPerHour.value;
+    console.log(max);
+    let avg = event.target.AvgSallesPerHour.value;
+    console.log(avg);
 
-  let min=event.target.MinCustmerPerHour.value;
-  console.log(min);
-  let max=event.target.MixCustmerPerHour.value;
-  console.log(max);
 
-  let avg=event.target.AvgSallesPerHour.value;
-  console.log(avg);
-  let newstore= new Cookie (newplace,min,max,avg);
-  console.log(newstore);
-  for (let i = 0; i < stores.length; i++) {
-    stores[i].calcookiesperhour();
-    
-}
-  newstore.render();
+    const addedstore = new Cookie(newplace, min, max, avg);
+    console.log(addedstore);
+
+    let container = document.getElementById('add');
+
+    container.textContent = '';
+
+    for (let i = 0; i < stores.length; i++) {
+        stores[i].calcookiesperhour();
+        
+
+    }
+    addedstore.render();
+   // makingFooter();
+
 }
 
 
 makingHeader();
+
 for (let i = 0; i < stores.length; i++) {
     stores[i].calcookiesperhour();
     stores[i].render();
+
 }
 makingFooter();
+
+
 
 
 
