@@ -4,250 +4,141 @@ let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '
 let stores = [];
 
 //create the function for random custemer number
-function randomnumber(min, max) {
+function RandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// create object 
+const Seattle={
+    name :'Seattle',
+    Min:23,
+    Max:65,
+    avg:6.3,
+    customerPerHour:[],
+    total1=0,
 
-function Cookie(name, min, max, avg) {
-    this.min = min;
-    this.max = max;
-    this.avg = avg;
-    this.name = name;
-
-    this.total = 0;
-    // randomnumber();
-    this.cookiesperhour = [];
-
-    stores.push(this);
-
-}
-// another way of solving total of toals
-// let globalTotal=0;
-
-//calculate the random custumer per hour
-Cookie.prototype.calcCustomerPerHour = function () {
-    return randomnumber(this.min, this.max);
-}
-
-//  and the average per customer for each hour
-Cookie.prototype.calcookiesperhour = function () {
-    for (let i = 0; i < hours.length; i++) {
-        //here calculate the number cookies and multiply with avg in same function 
-        this.cookiesperhour.push(Math.floor(this.calcCustomerPerHour() * this.avg));
-        this.total += this.cookiesperhour[i];
-        // globalTotal+=this.cookiesperhour[i];
-    }
-}
-
-const Seattle = new Cookie('Seattle', 23, 65, 6.3);
-// console.log(Seattle);
-
-const Tokyo = new Cookie('Tokyo', 3, 24, 1.2);
-// console.log(Tokyo);
-
-const Dubai = new Cookie('Dubai', 11, 38, 3.7);
-// console.log(Dubai);
-
-const Paris = new Cookie('Paris', 20, 38, 2.3);
-// console.log(Paris);
-
-const Lima = new Cookie('Lima', 2, 16, 4.6);
-// console.log(Lima);
-
-console.log('stores', stores);
-
-
-
-
-let parent = document.getElementById('parent');
-//create table in globel
-let table = document.createElement('table');
-//appeand
-parent.appendChild(table);
-
-
-// making header function
-
-function makingHeader() {
-    //create tr element in table
-    let headingrow = document.createElement('tr');
-    //append tr to table
-    table.appendChild(headingrow);
-
-
-    let firstTh = document.createElement('th');
-    headingrow.appendChild(firstTh);
-    firstTh.textContent = 'Name';
-
-    for (let i = 0; i < hours.length; i++) {
-        // create the first row
-        let hoursTh = document.createElement('th');
-        //appeanding
-        headingrow.appendChild(hoursTh);
-        //give the element the contant
-        hoursTh.textContent = hours[i];
-
-    }
-
-    let finalTh = document.createElement('th');
-    headingrow.appendChild(finalTh);
-    finalTh.textContent = "Daily Location Total";
-
-
-}
-
-
-
-
-
-
-//creating function by using cons (methode with const)
-
-Cookie.prototype.render = function () {
-    // make a store row 
-    let storeRow = document.createElement('tr');
-    // append to the table
-    table.appendChild(storeRow);
-
-    // first td element
-    let nameTd = document.createElement('td');
-    // append to the store row
-    storeRow.appendChild(nameTd);
-    // give text content
-    nameTd.textContent = this.name;
-
-
-    for (let i = 0; i < hours.length; i++) {
-        // make a td element for every hour
-        let cookiesTd = document.createElement('td');
-        // append to store row
-        storeRow.appendChild(cookiesTd);
-        // give text content of the avarage cookies per hour
-        cookiesTd.textContent = this.cookiesperhour[i];
-    }
-
-    // made total td for every shop
-    let totalTd = document.createElement('td');
-    // append total to the store row
-    storeRow.appendChild(totalTd);
-    // give text content
-    totalTd.textContent = this.total;
-
-}
-
-
-
-// footer function
-function makingFooter() {
-    // making footer row
-    let footerRow = document.createElement('tr');
-
-    // append footer row to the table
-    table.appendChild(footerRow);
-
-    // make first th for footer
-
-    let firstTh = document.createElement('th');
-
-    // append th to the footer row
-    footerRow.appendChild(firstTh);
-
-    // give text content
-    firstTh.textContent = 'Totals';
-
-    let totalForEachHour;
-    let megaTotal = 0;
-    // making the totals
-    for (let i = 0; i < hours.length; i++) {
-        totalForEachHour = 0;
-        for (let j = 0; j < stores.length; j++) {
-            // console.log(hours[i]);
-            // console.log(stores[j]);
-            totalForEachHour += stores[j].cookiesperhour[i];
-            megaTotal += stores[j].cookiesperhour[i];
-
+     calCustomersPerHour:function () {
+        for (let i=0;i<hours.length;i++){
+            this.customerPerHour.push(RandomNumber(this.min,this.max));
         }
-        console.log(totalForEachHour);
-        // create final th
-        let footerTh = document.createElement('th');
-
-        // append to footer row
-        footerRow.appendChild(footerTh);
-
-        // give text conent
-        footerTh.textContent = totalForEachHour;
-
-    }
-
-    // make final th total of totals
-    let totalTh = document.createElement('th');
-
-    // append to the footer row
-    footerRow.appendChild(totalTh);
-
-    // give text content:
-    totalTh.textContent = megaTotal;
-
-    // if you want to solve it with global total
-    // totalTh.textContent=globalTotal;
-
-
-
-
-}
-// here get the element by id that in HTML for form tage
-let form = document.getElementById('form');
-console.log(form);
-//add the event  listener into form
-form.addEventListener('submit', newstore);
-
-//Know create a function  submitter that call and run when event submit
-function newstore(event) {
-    // prevent the default behaviour of refreshing the page
-    event.preventDefault();
-    console.log(event);
-    // to show the data that enter in consol
-    let newplace = event.target.StoreCountery.value;
-    console.log(newplace);
-    let min = parseInt(event.target.MinCustmerPerHour.value);
-    console.log(min);
-    let max = parseInt(event.target.MixCustmerPerHour.value);
-    console.log(max);
-    let avg = parseFloat(event.target.AvgSallesPerHour.value);
-    console.log(avg);
-
-
-    const addedstore = new Cookie(newplace, min, max, avg);
-    console.log(addedstore);
-
-    let container = document.getElementById('add');
-    container.textContent = '';
-     for (let i = 0; i < stores.length; i++) {
-     stores[i].calcookiesperhour();
+    },
+    calCookiesPerHour:function(){
+    for(let i=0;i<hours.length;i++){
         
+        this.calCookiesPerHour.push(Math.floor(this.customerPerHour[i]*this.avg))
     }
-    addedstore.render();
-     
-    makingFooter();
-
+    } ,   
 }
+        
+    const Dubai={
+        name :'Seattle',
+        Min:11,
+        Max:38	,
+        avg:3.7,
+        customerPerHour:[],
+        total1=0,
+    
+         calCustomersPerHour:function () {
+            for (let i=0;i<hours.length;i++){
+                this.customerPerHour.push(RandomNumber(this.min,this.max));
+            }
+        },
+        calCookiesPerHour:function(){
+        for(let i=0;i<hours.length;i++){
+            
+            this.calCookiesPerHour.push(Math.floor(this.customerPerHour[i]*this.avg))
+        }
+        } , 
+    }
 
-makingHeader();
-
-for (let i = 0; i < stores.length; i++) {
-    stores[i].calcookiesperhour();
-    stores[i].render();
- 
-
+    const Tokyo={
+        name : 'Tokyo',
+   Min=3,
+   Max=24,
+   avg=1.2,
+   customerPerHour:[],
+    total1=0,
+       //function from samer 
+       calCustomersPerHour:function () {
+        for (let i=0;i<hours.length;i++){
+            this.customerPerHour.push(RandomNumber(this.min,this.max));
+        }
+    },
+    calCookiesPerHour:function(){
+    for(let i=0;i<hours.length;i++){
+        
+        this.calCookiesPerHour.push(Math.floor(this.customerPerHour[i]*this.avg))
+    }
+    } ,
 }
-newstore();
+      
+    const Paris={
+        name : 'Paris',
+   Min=20,
+   Max=38,
+   customerPerHour:[],
+    total1=0,
+    avg=2.3,
+       //function from samer 
+       calCustomersPerHour:function () {
+        for (let i=0;i<hours.length;i++){
+            this.customerPerHour.push(RandomNumber(this.min,this.max));
+        }
+    },
+    calCookiesPerHour:function(){
+    for(let i=0;i<hours.length;i++){
+        
+        this.calCookiesPerHour.push(Math.floor(this.customerPerHour[i]*this.avg))
+    }
+    
+},
+     render:function () {
+            const container = document.getElementById('parent');
+            console.log()
+            const articleEl = document.createElement('article');
+            container.appendChild(articleEl);
+            const h2El = document.createElement('h2');
+            articleEl.appendChild(h2El);
+            h2El.textContent = this.name;
+        
+            const ulEl = document.createElement('ul');
+            articleEl.appendChild(ulEl);
+            for (let i =0 ;i <hours.length;i++){
+                let liele=Document.createElement('li');
+                ulE1.appendChild(liele);
+                liele.textContent=`${hours[i]}: ${this.cookiesPerHour[i]}`;
+            }
+
+let total=document.createElement('li');
+ulE1.appendChild(total);
+totalli.textContent=`TOTAL: ${this.total1}`;
+        }
+    }
 
 
 
 
+Seattle.calCustomersPerHour();
+
+Seattle.calCookiesPerHour();
+Seattle.render();
+
+Tokyo.calCustomersPerHour();
+
+Tokyo.calCookiesPerHour();
+Tokyo.render();
+
+
+Paris.calCustomersPerHour();
+
+Paris.calCookiesPerHour();
+Paris.render();
 
 
 
+Lima.calCustomersPerHour();
+
+Lima.calCookiesPerHour();
+Lima.render();
 
 
