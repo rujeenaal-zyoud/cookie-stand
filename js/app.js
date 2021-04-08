@@ -1,9 +1,7 @@
 'use strict';
-let total1 =0;
-let total2 =0;
-let total3 =0;
-let total4 =0;
-let total5 =0;
+for ( let total =0,total<10,total++){
+    return total;
+}
 let houres=['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 function getRandomNumber(min,max){
     return Math.floor(Math.random() * (max - min + 1) + min);}
@@ -11,9 +9,9 @@ const Seattle={
     name : 'Seattle',
     coustmerPerHour : 0 ,
     getCoustmer: function(min,max){
-        console.log(this);
+        //console.log(this);
         this.coustmerPerHour = getRandomNumber(min,max);
-        console.log(this);
+        //console.log(this);
 },
 render:function () {
     const container = document.getElementById('parent');
@@ -157,8 +155,8 @@ render:function () {
     for(let i=0; i< houres.length; i++)
     {
         Lima.getCoustmer(2,16);
-      const liEl = document.createElement('li');
-      ulEl.appendChild(liEl);
+      const li = document.createElement('li');
+      ulEl.appendChild(li);
       liEl.textContent = `${houres[i]}: ${this.coustmerPerHour} cookies`;
       total5=total5+this.coustmerPerHour;
     }
