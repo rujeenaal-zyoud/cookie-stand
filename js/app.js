@@ -221,12 +221,14 @@ function newstore(event) {
     const addedstore = new Cookie(newplace, min, max, avg);
     console.log(addedstore);
 
-    let container = document.getElementById('add');
+    let table = document.getElementById('add');
 
-    container.textContent = '';
+    table.textContent = '';
+    makingHeader();
+
      for (let i = 0; i < stores.length; i++) {
      stores[i].calcookiesperhour();
-        
+     stores[i].render();
     }
      addedstore.render();
      makingFooter();
@@ -234,11 +236,10 @@ function newstore(event) {
 }
 
 
-makingHeader();
 
 for (let i = 0; i < stores.length; i++) {
     stores[i].calcookiesperhour();
-    stores[i].render();
+    //stores[i].render();
  
 
 }
