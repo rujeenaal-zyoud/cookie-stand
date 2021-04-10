@@ -1,17 +1,21 @@
-table, tr, th ,td{
+table, tr, th ,td{ 
+    margin-left: 30px;
     border: 1px solid black;
     border-collapse: collapse;
-}
-*{
-    position: relative;
-}
 
+}
+th{
+    height: 50px;
+    width: 70px;
+    background-color: brown;
+}
+/* tr{
+    background-color: #f2f2f2;
+} */
 nav{
     display: flex;
 }
-form{
-    margin-top: 30px;
-}
+
 
 .links{
     display: inline-block;
@@ -20,11 +24,13 @@ form{
     text-decoration: none;
 }
 header{
-    padding: 30px;
-    margin-top: 0px;
-    height: 100px;
+     /* position:fixed;  */
+    padding: 10px;
+    /* margin-top: 0px; */
+    height: 200px;
     background-color: brown;
 }
+
 header h2{
 text-align: center;
 font-size: x-large;
@@ -32,16 +38,25 @@ font-family: "Sofia";
 
 
 }
+h3{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
 #info{
+font-weight: bolder;
     text-align: center;
 color: black;
 }
 
 
 #stors{
+    margin-left: 550px;
+    text-align: center;
    color: black;
-   text-align: center;
+   display: inline-block;
    font-size: x-large; 
+
 }
 
 
@@ -68,4 +83,30 @@ color: black;
     width: 300px;
     height: 300px;
     
+}
+
+
+body{
+    background-color: burlywood;
+}
+
+a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+li{
+    text-align: center;
+    display: inline-block;
+
+}
+
+
+fieldset{
+    border:rgb(207, 106, 106);
+}
+
+#labe{
+    display: inline-block;
 }
