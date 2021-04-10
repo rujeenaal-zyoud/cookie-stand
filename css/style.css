@@ -105,8 +105,12 @@ li{
 
 fieldset{
     border:rgb(207, 106, 106);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #labe{
     display: inline-block;
+}
+p{
+    margin-top: 200px;
 }
