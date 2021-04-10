@@ -103,6 +103,7 @@ function makingHeader() {
 
 
 //creating function by using cons (methode with const)
+// here create render for each storeplace to ceate a rows and  fill it with same table in globel
 
 Cookie.prototype.render = function () {
     // make a store row 
@@ -196,6 +197,7 @@ function makingFooter() {
 
 
 }
+// create function for form that create by HTML
 // here get the element by id that in HTML for form tage
 let form = document.getElementById('form');
 console.log(form);
@@ -221,32 +223,28 @@ function newstore(event) {
     const addedstore = new Cookie(newplace, min, max, avg);
     console.log(addedstore);
 
+    
+    // now this line mean make table empty to overwtie the table with new store and update the total at same time
+    table.textContent = " ";
+    // create the table in submit function with new store place  same function for old store 
+    makingHeader();
 
      for (let i = 0; i < stores.length; i++) {
      stores[i].calcookiesperhour();
      stores[i].render();
+
     }
-    addedstore.render();
-     
-    makingFooter();
+     makingFooter();
 
 }
-
-
+// in below line call the create table functions  (header and footer ) for the old store that in our page
+makingHeader();
 
 for (let i = 0; i < stores.length; i++) {
     stores[i].calcookiesperhour();
-    //stores[i].render();
+    stores[i].render();
  
 
 }
-newstore();
-
-
-
-
-
-
-
-
+makingFooter();
 
