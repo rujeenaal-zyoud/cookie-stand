@@ -23,11 +23,13 @@ header{
     padding: 30px;
     margin-top: 0px;
     height: 100px;
-    background-color: blanchedalmond;
+    background-color: brown;
 }
 header h2{
 text-align: center;
 font-size: x-large;
+font-family: "Sofia";
+
 
 }
 #info{
