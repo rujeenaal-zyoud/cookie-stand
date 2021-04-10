@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 
     <!-- <link rel="stylesheet" href="css/reset.css"> -->
 
@@ -18,17 +19,21 @@
 
 <body>
 
-    <header>
-
+    <header id="21">
+       
+        <h2>Pat's salmon cookie</h2>
+        <div>
         <a href="index.html">Home page</a>
+    </div>
+<img style="height: 100px;width: 200px; margin-bottom: 500px;margin-left: 550px;" src="img/salmon (1).png " alt="salmon" >
     </header>
 
-    <div><img src="img/salmon (1).png" alt="salmin" style="height: 200px ; width: 300px; float: right;"></div>
     <!-- here create a form for add store by name country and min,max hour then use JS to create event for this form -->
 <form action="" id="form" >
 <fieldset>
-    <label for="StoreCountery">StoreCountery</label>
-    <input type="text"  id="StoreCountery"  name="StoreCountery" autocomplete="off">
+   <div id ="labe">
+    <label style="   display: inline-block;"  for="StoreCountery">StoreCountery</label>
+    <input  type="text"  id="StoreCountery"  name="StoreCountery" autocomplete="off">
     <br>
     <label for="MinCustmerPerHour"> Min Custmer Per Hour</label>
     <input type="number" id="MinCustmerPerHour" name="MinCustmerPerHour">
@@ -40,23 +45,25 @@
     <label for="AvgSallesPerHour">AvgSallesPerHour</label>
 
     <input type="number" id="AvgSallesPerHour" name="AvgSallesPerHour">
+</div>
     <br>
-    <input type="submit" value="submit">
+    <input style="color: beige; background-color:brown;" type="submit" value="submit">
 
 </fieldset>
 
 
 </form>
 <div id ="add"></div>
-<h1>Pat's salmon cookie</h1>
+
 
 
     <div id="parent"></div>
     <main>
         
     </main>
- 
-    <footer>
+ <hr>
+    <footer style="margin-top:400px; text-align: center;">
+        copyright 2021 SalmonCookie&copy;
 
     </footer>
     <script src="js/app.js"></script>
